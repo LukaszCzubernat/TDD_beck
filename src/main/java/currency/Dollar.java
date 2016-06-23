@@ -3,8 +3,7 @@ package currency;
 /**
  * Created by lucz on 23.06.16.
  */
-public class Dollar {
-    private int amount;
+public class Dollar extends Money{
 
     public Dollar(int amount) {
         this.amount = amount;
@@ -16,10 +15,9 @@ public class Dollar {
 
     @Override
     public boolean equals(Object o) {
-        Dollar dollar = (Dollar)o;
-        return this.amount==dollar.amount;
+        Money money = (Money)o;
+        return this.amount==money.amount;
     }
-
 
     @Override
     public int hashCode() {
