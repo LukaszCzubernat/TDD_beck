@@ -13,15 +13,4 @@ public class Dollar extends Money{
         return new Dollar(amount * multiplier);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        Money money = (Money)o;
-        return this.amount==money.amount;
-    }
-
-    @Override
-    public int hashCode() {
-        return amount;
-    }
-
 }
