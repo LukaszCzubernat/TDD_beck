@@ -3,7 +3,7 @@ package currency;
 /**
  * Created by lucz on 23.06.16.
  */
-public abstract class Money {
+public class Money {
     protected int amount;
     protected String currency;
 
@@ -15,7 +15,7 @@ public abstract class Money {
     @Override
     public boolean equals(Object o){
         Money money = (Money) o;
-        return this.amount == money.amount && getClass().equals(money.getClass());
+        return this.amount == money.amount && currency.equals(money.currency);
     }
 
     public static Money dollar(int amount) {
@@ -25,10 +25,17 @@ public abstract class Money {
     public static Money franc(int amount) {
         return new Franc(amount, "CHF");
     }
-
-    public abstract Money times(int amount);
+    
+    public Money times(int multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
 
     public String currency() {
         return currency;
+    }
+
+    @Override
+    public String toString(){
+        return amount + " " + currency;
     }
 }
