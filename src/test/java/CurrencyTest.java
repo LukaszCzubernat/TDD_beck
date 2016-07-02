@@ -4,6 +4,8 @@ import currency.Money;
 import currency.Sum;
 import org.testng.annotations.Test;
 
+import java.lang.management.MemoryPoolMXBean;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -71,5 +73,18 @@ public class CurrencyTest {
         Bank bank = new Bank();
         Money result = bank.reduce(Money.dollar(1), "USD");
         assertEquals(Money.dollar(1), result);
+    }
+
+    @Test
+    public void testReduceMoneyDifferentCurrency(){
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(Money.franc(2), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
+
+    @Test
+    public void testIdentityRate(){
+        assertEquals(1, new Bank().rate("USD", "USD"));
     }
 }
